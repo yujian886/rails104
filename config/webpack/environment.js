@@ -8,4 +8,5 @@ environment.plugins.append(
     Popper: ['popper.js', 'default']
   })
 )
+
 module.exports = environment

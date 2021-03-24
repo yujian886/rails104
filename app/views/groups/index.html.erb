@@ -10,6 +10,7 @@
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Description</th>
+        <th scope="col">Creator</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
               <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-outline-secondary",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
           </td>
+          <td><%= link_to(group.user.email) %></td>
         </tr>
       <% end %>
     </tbody>

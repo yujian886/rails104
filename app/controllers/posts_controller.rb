@@ -12,14 +12,35 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
+      current_user.join!(@group)
       redirect_to group_path(@group)
     else
       render :new
     end
   end
 
+  def edit
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:id])
+    @post.update(post_params)
+    redirect_to account_posts_path,notice: "Update Success"
+  end
+  def destroy
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:id])
+    @post.destroy
+    flash[:alert] = "Post Deleted"
+    redirect_to account_posts_path
+  end
+
+
   private
   def post_params
     params.require(:post).permit(:content)
-  end 
+  end
 end
